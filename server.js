@@ -8,6 +8,10 @@ const express = require('express'),
     jwt = require('jsonwebtoken'),
     config = require('./config');
 
+const helmet = require('helmet');
+app.use(helmet());
+app.use(express.static("./public"));
+
 const router = express.Router();
 //connect to mongoDB
 //mongoose.Promise = global.Promise;
