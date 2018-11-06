@@ -10,20 +10,18 @@ var jwt = require('jsonwebtoken');
 var config = require('./config');
 var User = require('./app/models/user');
 
-var port = process.enc.PORT || 4000;
+var port = process.env.PORT || 4000;
 
 mongoose.connect(config.database);
 mongoose.Promise = global.Promise;
-app.set('superSecret', config.secret);
 
-app.use(bodyParser.urlencoded)
 
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/api', routes);
-app.use(function(err, req, res, next) {
-   res.status(422).send({error: err.message});
-});
+app.use(morgan('dev'));
 
-app.listen(4000, function () {
-    console.log('now listening for requests');
+
+app.listen(port, function () {
+    console.log('now listening for requests on port: ' + port);
 });
