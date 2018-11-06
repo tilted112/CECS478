@@ -106,11 +106,16 @@ router.use(function(req,res,next) {
         jwt.verify(token, app.get('superSecret'), function (err, decoded) {
             if(err) {
                 return res.json({
-                    sucess: false,
+                    success: false,
                     message: 'Failed to authenticate token.'
                 });
             } else {
+                console.log('token valid');
                 req.decoded = decoded;
+                res.json({
+                    "success" : true,
+                    "message" : 'token is valid'
+                });
                 next();
             }
         });
