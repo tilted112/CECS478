@@ -4,7 +4,9 @@ const User = require('../app/models/user');
 
 //GET
 router.get('/users', function (req,res, next) {
-   res.send({type:'GET'});
+    User.find({}).then(function (users) {
+        res.send(users);
+    });
 });
 
 //POST
@@ -16,12 +18,18 @@ router.post('/users', function (req,res, next) {
 
 //PUT
 router.put('/users/:id', function (req,res, next) {
-    res.send({type:'PUT'});
+    User.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){
+        User.findOne({_id: req.params.id}).then(function(user){
+            res.send(user);
+        })
+    });
 });
 
 //DELETE
 router.delete('/users/:id', function (req,res, next) {
-    res.send({type:'DELETE'});
+    User.findByIdAndRemove({_id: req.params.id}).then(function(user){
+        res.send(user);
+    });
 });
 
 module.exports = router;

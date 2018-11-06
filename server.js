@@ -2,10 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
+const morgan = require('morgan');
+
 const routes = require('./routes/api');
 
-mongoose.connect('mongodb://localhost/userdb');
+var jwt = require('jsonwebtoken');
+var config = require('./config');
+var User = require('./app/models/user');
+
+var port = process.enc.PORT || 4000;
+
+mongoose.connect(config.database);
 mongoose.Promise = global.Promise;
+app.set('superSecret', config.secret);
+
+app.use(bodyParser.urlencoded)
 
 app.use(bodyParser.json());
 app.use('/api', routes);

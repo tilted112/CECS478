@@ -1,3 +1,4 @@
 module.exports = {
-    'secret': ''
+    'secret': 'computersecurityprojectteamus',
+    'database' : 'mongodb://localhost/userdb'
 }
