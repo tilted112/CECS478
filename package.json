@@ -20,5 +20,10 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tilted112/CECS478.git"
+  },
+  "author": "Till Behrendt"
 }

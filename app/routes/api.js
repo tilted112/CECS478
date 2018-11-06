@@ -1,10 +1,13 @@
+/*
+'use strict';
+
 const express = require('express');
 const router = express.Router();
-const User = require('../app/models/user');
+const User = require('../models/user');
 const app = express();
 
 var jwt = require('jsonwebtoken');
-var config = require('../config');
+var config = require('../../config');
 
 app.set('superSecret', config.secret);
 
@@ -108,3 +111,20 @@ router.use(function(req,res,next) {
 });
 
 module.exports = router;
+///////////////////////
+
+///////////////////////
+const express = require('express');
+const router = express.Router();
+
+module.exports = function(app){
+    const user = require('../controller/apiController');
+
+    router.get('/users', user.list_all_user());
+    router.post('/users', user.create_new_user());
+    router.get('/users/:id', user.read_user());
+    router.put('/users/:id', user.update_user());
+    router.delete('/users/:id', user.delete_user());
+    router.post('/users/authenticate', user.authenticate_user());
+
+};*/
