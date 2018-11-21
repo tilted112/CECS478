@@ -1,5 +1,5 @@
 {
-  "name": "cecs478",
+  "name": "cecs478-server",
   "main": "server.js",
   "version": "0.0.0",
   "private": true,
@@ -7,9 +7,11 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "helmet": "^3.13.0",
     "http-errors": "~1.6.2",

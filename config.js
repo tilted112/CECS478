@@ -1,4 +1,5 @@
 module.exports = {
     'secret': 'computersecurityprojectteamus',
-    'database' : 'mongodb://localhost/userdb'
+    'database': process.env.MONGODB_URI || 'mongodb://localhost/userdb'
 };
+
