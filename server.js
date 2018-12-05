@@ -6,21 +6,22 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config');
 const usersRouter = require('./app/routes/users');
-const helmet = require('helmet');
+const messagesRouter = require('./app/routes/messages');
+//const helmet = require('helmet');
 const morgan = require('morgan');
 const router = express.Router();
 
 //
 app.use(morgan('dev'));
-app.use(helmet());
+//app.use(helmet());
 app.use(express.static("./public"));
 //
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 //
 app.use('/users', usersRouter);
+app.use('/messages', messagesRouter);
 //
-
 
 //connect to mongoDB
 mongoose.connect(config.database);
