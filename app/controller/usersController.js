@@ -57,7 +57,7 @@ exports.signin_user = function (req, res) {
                     });
                     res.status(200).json({success: true, token: token});
                 } else {
-                    res.status(403).json({succes: false, token: "error"});
+                    res.status(403).json({success: false, token: "error"});
                 }
             });
 
