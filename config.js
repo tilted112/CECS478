@@ -1,5 +1,5 @@
 module.exports = {
     'secret': 'computersecurityprojectteamus',
-    'database': 'mongodb://localhost/encchat'
+    'database': 'mongodb://localhost:27017/encchat'
 };
 
