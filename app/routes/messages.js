@@ -13,7 +13,7 @@ router.post('/sendmessage', jwtCheck, messages_controller.sendMessage);
 
 function jwtCheck(req, res, next) {
     console.log('protected');
-    const token = req.body.token;
+    const token = req.headers['x-access-token'] || req.body.token;
     if (token) {
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {

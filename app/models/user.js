@@ -29,7 +29,8 @@ UserSchema.pre('save', async function (next) {
 //Check whether the entered password is valid
 UserSchema.methods.comparePassword = function(newPassword, callback){
   bcrypt.compare(newPassword, this.password, function (err, isMatch) {
-     if(err)throw err;
+     if(err)
+         callback(null, false);
      callback(null, isMatch);
   });
 };

@@ -46,18 +46,19 @@ exports.signin_user = function (req, res) {
     }, function (err, user) {
         if (err) throw err;
         if (!user) {
-            res.status(403).json({success: false, token: "error"});
+            res.status(403).json({token: "error"});
         } else {
             user.comparePassword(req.body.password, function (err, isMatch) {
-                if (err) throw err;
+                if (err)
+                    res.status(500).send(err);
                 //If password is valid, send token
                 if (isMatch) {
                     token = jwt.sign({name: req.body.name, id: user._id}, config.secret, {
                         expiresIn: 86400
                     });
-                    res.status(200).json({success: true, token: token});
+                    res.status(200).json({token: token});
                 } else {
-                    res.status(403).json({success: false, token: "error"});
+                    res.status(403).json({token: "error"});
                 }
             });
 
