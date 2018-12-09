@@ -14,8 +14,6 @@ router.post('/signup', users_controller.signup_user);
 router.post('/signin', users_controller.signin_user);
 
 //Protected Routes - token must be provided with the json object
-//Alter User - PUT
-router.put('/:id',jwtCheck, users_controller.update_user);
 //Delete User - DELETE
 router.delete('/:id',jwtCheck, users_controller.delete_user);
 

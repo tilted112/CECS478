@@ -19,17 +19,6 @@ exports.signup_user = function (req, res, next) {
     });
 };
 
-//Alter User - PUT - /users/:id
-exports.update_user = function (req, res) {
-    //does not work as expected - password not hashed!
-    User.findByIdAndUpdate({_id: req.params.id}, req.body).then(function () {
-        User.findOne({_id: req.params.id}).then(function (user) {
-            res.status(200).send(user);
-        })
-    });
-
-};
-
 //Delete User - DELETE - /users/:id
 exports.delete_user = function (req, res) {
     User.findByIdAndRemove({_id: req.params.id}).then(function (user) {
