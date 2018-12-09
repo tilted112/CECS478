@@ -2,7 +2,8 @@
 const Message = require('../models/message');
 
 exports.getMessage = function (req, res) {
-    Message.findOne({to: "till", from: req.body.from}, function (err, message) {
+    const token = req.headers['x-access-token'] || req.body.token;
+    Message.findOne({to: token.name, from: req.body.from}, function (err, message) {
         if (err) {
             res.status(204).json({success: true, message: 'No message'});
         } else {
@@ -28,7 +29,8 @@ exports.getMessageByID = function (req, res) {
 };
 
 exports.sendMessage = function (req, res) {
-    const newMessage = new Message({from: "till", to: req.body.to, message: req.body.message});
+    const token = req.headers['x-access-token'] || req.body.token;
+    const newMessage = new Message({from: token.name, to: req.body.to, message: req.body.message});
     newMessage.save(function (err, msg) {
         if (err) {
             res.send(err)

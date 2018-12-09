@@ -1,6 +1,8 @@
 //routes for user signup, authentication
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const config = require('../../config');
 
 //import apiController with route actions
 const users_controller = require('../controller/usersController');
@@ -13,16 +15,24 @@ router.post('/signin', users_controller.signin_user);
 
 //Protected Routes - token must be provided with the json object
 //Alter User - PUT
-router.put('/:id', users_controller.update_user);
+router.put('/:id',jwtCheck, users_controller.update_user);
 //Delete User - DELETE
-router.delete('/:id', users_controller.delete_user);
-//Get specific User - GET
-router.get('/:id', users_controller.get_user_by_id);
+router.delete('/:id',jwtCheck, users_controller.delete_user);
 
-//
-//List all User - GET
-router.get('/list', users_controller.get_all_user);
-
+function jwtCheck(req, res, next) {
+    const token = req.headers['x-access-token'] || req.body.token;
+    if (token) {
+        jwt.verify(token, config.secret, function (err, decoded) {
+            if (err) {
+                return res.status(403).json({success: false, message: 'Failed to authenticate token'});
+            } else {
+                return next();
+            }
+        });
+    } else {
+        return res.status(403).send({success: false, message: 'No token provided'});
+    }
+}
 
 //export the router
 module.exports = router;
