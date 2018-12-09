@@ -7,8 +7,6 @@ const config = require('../../config');
 const messages_controller = require('../controller/messagesController');
 
 router.post('/getmessage', jwtCheck, messages_controller.getMessage);
-router.get('/getmessage/:id', jwtCheck, messages_controller.getMessageByID);
-router.delete('/:id', jwtCheck, messages_controller.deleteMessage);
 router.post('/sendmessage', jwtCheck, messages_controller.sendMessage);
 
 function jwtCheck(req, res, next) {

@@ -32,7 +32,9 @@ exports.signin_user = function (req, res) {
     User.findOne({
         name: req.body.name
     }, function (err, user) {
-        if (err) throw err;
+        if (err){
+            res.status(500).send(err)
+        }
         if (!user) {
             res.status(403).json({token: "error"});
         } else {
@@ -42,7 +44,7 @@ exports.signin_user = function (req, res) {
                 //If password is valid, send token
                 if (isMatch) {
                     token = jwt.sign({name: req.body.name, id: user._id}, config.secret, {
-                        expiresIn: 86400
+                        expiresIn: '24h'
                     });
                     res.status(200).json({token: token, id: user._id});
                 } else {
