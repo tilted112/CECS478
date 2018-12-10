@@ -7,13 +7,13 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const usersRouter = require('./app/routes/users');
 const messagesRouter = require('./app/routes/messages');
-//const helmet = require('helmet');
+const helmet = require('helmet');
 const morgan = require('morgan');
 const router = express.Router();
 
 //
 app.use(morgan('dev'));
-//app.use(helmet());
+app.use(helmet());
 app.use(express.static("./public"));
 //
 app.use(bodyParser.json());
