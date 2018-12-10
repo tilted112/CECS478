@@ -1,6 +1,8 @@
+//Message Model
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Model of a messsage - from, to, message
 const MessageSchema = new Schema({
     from: {
         type: String,
