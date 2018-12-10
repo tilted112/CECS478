@@ -9,7 +9,6 @@ const usersRouter = require('./app/routes/users');
 const messagesRouter = require('./app/routes/messages');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const router = express.Router();
 
 //
 app.use(morgan('dev'));
@@ -18,7 +17,7 @@ app.use(express.static("./public"));
 //
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-//
+//Routers for users/messages routes
 app.use('/users', usersRouter);
 app.use('/messages', messagesRouter);
 //
@@ -28,7 +27,7 @@ mongoose.connect(config.database);
 mongoose.Promise = global.Promise;
 app.set('superSecret', config.secret);
 
-//listen on Port
+//Start RESTful API and listen on Port
 app.listen(port, function () {
     console.log('RESTful API listing on port: ' + port);
 });
