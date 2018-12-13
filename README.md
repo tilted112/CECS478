@@ -41,11 +41,11 @@ The controller [usersController.js](https://github.com/tilted112/CECS478/blob/ma
 * delete_user() : The user can send a DELETE request to the server. By doing so he can delete his user from the database.
 
 ### Models
-The [message.js]() contains the model for messages. A message consists of three components (all of them are required):
+The [message.js](https://github.com/tilted112/CECS478/blob/master/app/models/message.js) contains the model for messages. A message consists of three components (all of them are required):
 * from : sender of the message
 * to : receiver of the message
 * message : encrypted message
-The [user.js] contains the model for users. A user consists of two components (both of them are required):
+The [user.js](https://github.com/tilted112/CECS478/blob/master/app/models/user.js) contains the model for users. A user consists of two components (both of them are required):
 * name : the unique username
 * password : password of the user
 The user model file also includes two functions:
