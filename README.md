@@ -1,6 +1,9 @@
 # CECS478 Server Application E2E encrypted chat
 Server application for an E2E encrypted chat. As part of the class CECS478 by Team us, Jaime Park and Till Behrendt
 
+# Design of the E2E encrpyted Chat
+Detail to the design can be found in the design paper. There is also a presentation with a brief overview over this application.
+
 ## Getting Started
 This is an introduction how to run the server application.
 ### Prerequirements
